@@ -1,0 +1,162 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="zh-tw"> <!--<![endif]-->
+<head>
+     <meta charset="UTF-8">
+<title>嘉宏&津舫婚紗</title>
+<meta name="viewport" content="width =1240, user-scalable = yes" />
+
+<link rel="stylesheet" type="text/css" href="css/jssocials.css" />
+<link rel="stylesheet" type="text/css" href="css/jssocials-theme-classic.css" />
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="css/basic.css" />
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+ 
+<script type="text/javascript" src="js/turn.min.js"></script>
+ <script type="text/javascript" src="js/jssocials.min.js"></script>
+
+</head>
+<body>
+
+<div class="bg_heart"></div> 
+<div id="shares" class="floatright"></div>   
+
+<div class="flipbook-viewport">
+	<div class="container">
+		<div class="flipbook">
+			<div class="hard" style="background-image:url(pages/album_cover.jpg)"></div>
+            		<div class="hard" style="background-image:url(pages/p1.jpg)"></div>
+			<div class="hard" style="background-image:url(pages/p2.jpg)"></div>
+			<div class="hard" style="background-image:url(pages/p3.jpg)"></div>
+			<div class="hard" style="background-image:url(pages/p4.jpg)"></div>
+			<div class="hard" style="background-image:url(pages/p5.jpg)"></div>
+			<div class="hard" style="background-image:url(pages/p6.jpg)"></div>
+			<div class="hard" style="background-image:url(pages/p7.jpg)"></div>
+			<div class="hard" style="background-image:url(pages/p8.jpg)"></div>
+			<div class="hard" style="background-image:url(pages/p9.jpg)"></div>
+			<div class="hard" style="background-image:url(pages/p10.jpg)"></div>
+			<div class="hard" style="background-image:url(pages/p11.jpg)"></div>
+			<div class="hard" style="background-image:url(pages/p12.jpg)"></div>
+            		<div class="hard" style="background-image:url(pages/p13.jpg)"></div>
+			<div class="hard" style="background-image:url(pages/p14.jpg)"></div>
+			<div class="hard"></div>
+		</div>
+	</div>
+</div>
+
+
+
+
+  
+<script type="text/javascript">
+
+$(function() {
+
+    var  refreshIntervalId;
+
+     var audio = new Audio('./marry_you.mp3');
+
+    // Create the flipbook
+	$('.flipbook').turn({
+        when: {
+	       turned: function(event, page, pageObject) {
+                    if  (page==1) {
+                    event.preventDefault();
+			
+			//click first to play music
+			 var click = document.ontouchend === undefined ? 'click' : 'touchend';
+			 var kickoff = function () {
+				//clearInterval(refreshIntervalId);
+
+				 $('.flipbook').turn('next');
+
+				audio.play();
+
+				document.documentElement.removeEventListener(click, kickoff, true);
+			};
+			document.documentElement.addEventListener(click, kickoff, true);
+
+                    }
+               
+		          if (page==2) {
+                   		 event.preventDefault();
+                        audio.play();
+                }
+            }
+        },
+			// Width
+			width:1200,
+			
+			// Height
+
+			height:800,
+
+			// Elevation
+
+			elevation: 50,
+			
+			// Enable gradients
+
+			gradients: true,
+			
+			// Auto center this flipbook
+
+			autoCenter: true
+
+	});
+    
+	//auto play for turn.js by 7s
+	 refreshIntervalId =  setInterval(function() {
+		 if ( $('.flipbook').turn('page')==$('.flipbook').turn('pages') ) {
+		    $('.flipbook').turn('page', 1);
+		 } else {
+		    $('.flipbook').turn('next');
+		 }
+	}, 7000);
+
+	//social media of line 
+	jsSocials.shares.line = {
+	    label: "line",
+	    logo: "img/line.png",
+	    shareUrl: "http://line.naver.jp/R/msg/text/?{text}%0A{url}"
+	};
+	  
+	
+	$("#shares").jsSocials({
+	    showLabel: false,
+	    showCount: false,
+	    shares: ["email",  "facebook", "googleplus", "twitter", "line"]
+	});
+
+});
+  
+
+//love background 
+//thank for http://www.thelittletechie.com/2015/03/love-heart-animation-using-css3.html
+var love = setInterval(function() {
+    var r_num = Math.floor(Math.random() * 40) + 1;
+    var r_size = Math.floor(Math.random() * 65) + 10;
+    var r_left = Math.floor(Math.random() * 100) + 1;
+    var r_bg = Math.floor(Math.random() * 25) + 100;
+    var r_time = Math.floor(Math.random() * 5) + 5;
+
+    $('.bg_heart').append("<div class='heart' style='width:" + r_size + "px;height:" + r_size + "px;left:" + r_left + "%;background:rgba(255," + (r_bg - 25) + "," + r_bg + ",1);-webkit-animation:love " + r_time + "s ease;-moz-animation:love " + r_time + "s ease;-ms-animation:love " + r_time + "s ease;animation:love " + r_time + "s ease'></div>");
+
+    $('.bg_heart').append("<div class='heart' style='width:" + (r_size - 10) + "px;height:" + (r_size - 10) + "px;left:" + (r_left + r_num) + "%;background:rgba(255," + (r_bg - 25) + "," + (r_bg + 25) + ",1);-webkit-animation:love " + (r_time + 5) + "s ease;-moz-animation:love " + (r_time + 5) + "s ease;-ms-animation:love " + (r_time + 5) + "s ease;animation:love " + (r_time + 5) + "s ease'></div>");
+
+    $('.heart').each(function() {
+        var top = $(this).css("top").replace(/[^-\d\.]/g, '');
+        var width = $(this).css("width").replace(/[^-\d\.]/g, '');
+        if (top <= -100 || width >= 150) {
+            $(this).detach();
+        }
+    });
+}, 500);
+ 
+</script>
+
+</body>
+</html>
